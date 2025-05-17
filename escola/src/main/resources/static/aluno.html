@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aluno</title>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main>
+    <section class="container" id="alunos-container" aria-labelledby="alunos-title">
+      <h1 id="alunos-title">Alunos Cadastrados</h1>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col">Telefone</th>
+          </tr>
+        </thead>
+        <tbody id="aluno-tbody">
+          <!-- Os dados dos alunos vão aparecer aqui -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <h1>Aluno</h1>
+
+  <script>
+    // Sample data array
+    const alunos = [
+      {nome: "João Silva", email: "joao.silva@gmail.com", telefone: "(11) 91234-5678"},
+      {nome: "Maria Oliveira", email: "maria.oliveira@gmail.com", telefone: "(21) 98765-4321"},
+      {nome: "Lucas Pereira", email: "lucas.pereira@gmail.com", telefone: "(31) 97654-3210"},
+      {nome: "Carla Souza", email: "carla.souza@gmail.com", telefone: "(41) 96543-2109"}
+    ];
+
+    // Function to render alunos table
+    function renderAlunos() {
+      const tbody = document.getElementById("aluno-tbody");
+      tbody.innerHTML = "";
+
+      alunos.forEach((item, index) => {
+        const tr = document.createElement("tr");
+
+        const thIndex = document.createElement("th");
+        thIndex.scope = "row";
+        thIndex.textContent = index + 1;
+        tr.appendChild(thIndex);
+
+        const tdNome = document.createElement("td");
+        tdNome.textContent = item.nome;
+        tr.appendChild(tdNome);
+
+        const tdEmail = document.createElement("td");
+        tdEmail.textContent = item.email;
+        tr.appendChild(tdEmail);
+
+        const tdTelefone = document.createElement("td");
+        tdTelefone.textContent = item.telefone;
+        tr.appendChild(tdTelefone);
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    renderAlunos();
+  </script>
+</body>
+</html>

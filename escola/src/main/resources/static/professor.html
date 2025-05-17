@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Professor</title>
+    <link rel="stylesheet" href="./style.css" />
+
+</head>
+<body>
+    <main>
+        <section class="container" id="professores-container" aria-labelledby="professores-title">
+            <h1 id="professores-title">Professores Cadastrados</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Telefone</th>
+                    </tr>
+                </thead>
+                <tbody id="professor-tbody">
+                    <!-- Os dados dos professores vão aparecer aqui -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script>
+        // Sample data array
+        const professores = [
+            {nome: "Ana Silva", email: "ana.silva@escola.com", telefone: "(11) 99999-1234"},
+            {nome: "Carlos Souza", email: "carlos.souza@escola.com", telefone: "(21) 98888-4321"},
+            {nome: "Mariana Lima", email: "mariana.lima@escola.com", telefone: "(31) 97777-5678"},
+            {nome: "Pedro Alves", email: "pedro.alves@escola.com", telefone: "(41) 96666-2345"}
+        ];
+
+        // Function to render professores table
+        function renderProfessores() {
+            const tbody = document.getElementById("professor-tbody");
+            tbody.innerHTML = "";
+
+            professores.forEach((item, index) => {
+                const tr = document.createElement("tr");
+
+                const thIndex = document.createElement("th");
+                thIndex.scope = "row";
+                thIndex.textContent = index + 1;
+                tr.appendChild(thIndex);
+
+                const tdNome = document.createElement("td");
+                tdNome.textContent = item.nome;
+                tr.appendChild(tdNome);
+
+                const tdEmail = document.createElement("td");
+                tdEmail.textContent = item.email;
+                tr.appendChild(tdEmail);
+
+                const tdTelefone = document.createElement("td");
+                tdTelefone.textContent = item.telefone;
+                tr.appendChild(tdTelefone);
+
+                tbody.appendChild(tr);
+            });
+        }
+
+        renderProfessores();
+    </script>
+</body>
+</html>
