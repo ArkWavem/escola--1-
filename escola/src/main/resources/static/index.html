@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lista de Alunos e Professores</title>
+  <style>
+    /* Modern styling for the full page */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 20px 0;
+      color: #333;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-weight: 700;
+      color: #2c3e50;
+      margin-bottom: 25px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      box-shadow: 0 0 12px rgba(0,0,0,0.05);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+    thead {
+      background-color: #3498db;
+      color: #fff;
+    }
+    thead th {
+      padding: 15px 20px;
+      text-align: left;
+      font-weight: 600;
+    }
+    tbody tr {
+      border-bottom: 1px solid #ddd;
+      transition: background-color 0.3s ease;
+      cursor: default;
+    }
+    tbody tr:hover {
+      background-color: #f1f9ff;
+    }
+    tbody td {
+      padding: 14px 20px;
+      font-size: 15px;
+      color: #555;
+    }
+    /* Responsive */
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px 10px;
+        padding: 20px;
+      }
+      thead, tbody, tr, th, td {
+        display: block;
+      }
+      thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+      tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background: #fff;
+        padding: 10px 15px;
+      }
+      td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+        font-size: 14px;
+      }
+      td::before {
+        position: absolute;
+        left: 15px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: 600;
+        text-align: left;
+        color: #3498db;
+      }
+      td:nth-of-type(1)::before { content: "Nome"; }
+      td:nth-of-type(2)::before { content: "Email"; }
+      td:nth-of-type(3)::before { content: "Telefone"; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="alunos-container">
+  <h1>Alunos Cadastrados</h1>
+  <table>
+    <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Telefone</th>
+    </tr>
+    </thead>
+    <tbody id="aluno-tbody">
+    <!-- Os dados dos alunos vão aparecer aqui -->
+    </tbody>
+  </table>
+</div>
+
+<div class="container" id="professores-container">
+  <h1>Professores Cadastrados</h1>
+  <table>
+    <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Telefone</th>
+    </tr>
+    </thead>
+    <tbody id="professor-tbody">
+    <!-- Os dados dos professores vão aparecer aqui -->
+    </tbody>
+  </table>
+</div>
+
+<script>
+  // Sample data arrays
+  const alunos = [
+    {nome: "João Silva", email: "joao.silva@gmail.com", telefone: "(11) 91234-5678"},
+    {nome: "Maria Oliveira", email: "maria.oliveira@gmail.com", telefone: "(21) 98765-4321"},
+    {nome: "Lucas Pereira", email: "lucas.pereira@gmail.com", telefone: "(31) 97654-3210"},
+    {nome: "Carla Souza", email: "carla.souza@gmail.com", telefone: "(41) 96543-2109"}
+  ];
+
+  const professores = [
+    {nome: "Ana Silva", email: "ana.silva@escola.com", telefone: "(11) 99999-1234"},
+    {nome: "Carlos Souza", email: "carlos.souza@escola.com", telefone: "(21) 98888-4321"},
+    {nome: "Mariana Lima", email: "mariana.lima@escola.com", telefone: "(31) 97777-5678"},
+    {nome: "Pedro Alves", email: "pedro.alves@escola.com", telefone: "(41) 96666-2345"}
+  ];
+
+  // Functions to render tables
+  function renderTabela(tbodyId, dados) {
+    const tbody = document.getElementById(tbodyId);
+    tbody.innerHTML = "";
+
+    dados.forEach( item => {
+      const tr = document.createElement("tr");
+
+      const tdNome = document.createElement("td");
+      tdNome.textContent = item.nome;
+      tr.appendChild(tdNome);
+
+      const tdEmail = document.createElement("td");
+      tdEmail.textContent = item.email;
+      tr.appendChild(tdEmail);
+
+      const tdTelefone = document.createElement("td");
+      tdTelefone.textContent = item.telefone;
+      tr.appendChild(tdTelefone);
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  // Render both tables on page load
+  renderTabela("aluno-tbody", alunos);
+  renderTabela("professor-tbody", professores);
+</script>
+</body>
+</html>
+
